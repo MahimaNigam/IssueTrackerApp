@@ -46,10 +46,11 @@ class IssueNameComponent extends React.Component {
     }
     renderIssueList(){
         return(
-            <li className="list-group-item ml-auto" onClick={() => {
+            <li className="list-group-item mr-auto" onClick={() => {
                 this.props.clickHandler(this.props.index)
             }}>
-                <span className={this.props.issue.completed ? "completed" : ""}>{this.props.issue.name}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+            <span >{this.props.issue.id}</span>&nbsp;&nbsp;
+                <span  className={this.props.issue.completed ? "completed" : ""}>{this.props.issue.name}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button className="btn btn-warning " onClick={(event)=>{
                     event.stopPropagation();
                     this.toggleState();
