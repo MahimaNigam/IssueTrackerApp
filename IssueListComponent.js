@@ -6,17 +6,24 @@ class IssueListComponent extends React.Component{
         super(props);
         this.state={
             issues:[
-                {name: "Create react app",
-                 completed:false
+                {
+                id:1,
+                name: "Create react app",
+                completed:false
                 },
-                {name: "Demo of react Application",
-                 completed:true
+                {
+                id:2,
+                name: "Demo of react Application",
+                completed:true
                 },
-                {name: "Attending meeting",
-                 completed:false
+                {
+                id:3,
+                name: "Attending meeting",
+                completed:false
                 }
                ],
-               currentIssue:''
+               currentIssue:'',
+               currentId:3
         }
         this.changeStatus=this.changeStatus.bind(this);
         this.updateIssue=this.updateIssue.bind(this);
@@ -46,9 +53,12 @@ class IssueListComponent extends React.Component{
     addIssue(event){
         event.preventDefault();
         console.log("----------:addIssue called")
+        
         let issues=this.state.issues;
         let currentIssue=this.state.currentIssue;
+        let currentId=this.state.currentId;
         issues.push({
+            id:currentId+1,
             name:currentIssue,
             completed:false
         });
@@ -56,6 +66,7 @@ class IssueListComponent extends React.Component{
             issues:issues,
             currentIssue:''
         });
+        console.log(issues);
     }
     updateIssue(newValue){
         this.setState({
