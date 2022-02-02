@@ -7,17 +7,17 @@ class IssueListComponent extends React.Component{
         this.state={
             issues:[
                 {
-                id:"Tracker"+1,
+                id:"Tracker  "+1,
                 name: "Create react app",
                 completed:false
                 },
                 {
-                id:"Tracker"+2,
+                id:"Tracker  "+2,
                 name: "Demo of react Application",
                 completed:true
                 },
                 {
-                id:"Tracker"+3,
+                id:"Tracker  "+3,
                 name: "Attending meeting",
                 completed:false
                 }
@@ -60,19 +60,42 @@ class IssueListComponent extends React.Component{
         
         let issues=this.state.issues;
         let currentIssue=this.state.currentIssue;
-        let currentId=this.state.currentId;
-        currentId=currentId+1;
-        let currenttoken="Tracker"+currentId;
-        issues.push({
-            id:currenttoken,
-            name:currentIssue,
-            completed:false
-        });
-        this.setState({
-            issues:issues,
-            currentIssue:'',
-            currentId:currentId
-        });
+        let issueName=[];
+        for (let i=0;i<issues.length;i++)
+        {        
+            issueName.push(issues[i].name);
+        }
+        if (currentIssue.length===0){
+            window.alert("Please Add Name to the task");
+        }
+
+        else if (issueName.includes(currentIssue))
+        {
+                    window.alert("A task with the same name already exists.Please give another name to the task");
+                    document.getElementById("taskName").value="";
+        }
+        
+            else{
+                let currentId=this.state.currentId;
+                currentId=currentId+1;
+                let currenttoken="Tracker  "+currentId;
+                issues.push({
+                    id:currenttoken,
+                    name:currentIssue,
+                    completed:false
+                });
+                this.setState({
+                    issues:issues,
+                    currentIssue:'',
+                    currentId:currentId
+                });
+           
+            }
+                
+        
+         
+        
+        
         console.log(issues);
     }
     updateIssue(newValue){
