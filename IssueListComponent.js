@@ -7,23 +7,25 @@ class IssueListComponent extends React.Component{
         this.state={
             issues:[
                 {
-                id:1,
+                id:"Tracker"+1,
                 name: "Create react app",
                 completed:false
                 },
                 {
-                id:2,
+                id:"Tracker"+2,
                 name: "Demo of react Application",
                 completed:true
                 },
                 {
-                id:3,
+                id:"Tracker"+3,
                 name: "Attending meeting",
                 completed:false
                 }
                ],
                currentIssue:'',
-               currentId:3
+               currentId:3,
+               
+                
         }
         this.changeStatus=this.changeStatus.bind(this);
         this.updateIssue=this.updateIssue.bind(this);
@@ -44,9 +46,11 @@ class IssueListComponent extends React.Component{
     deleteIssue(indexToBeDeleted){
         console.log("------------->delete method called")
         let issues=this.state.issues;
+        let currentId=this.state.currentId;
         issues.splice(indexToBeDeleted,1);
         this.setState({
-            issues:issues
+            issues:issues,
+            currentId:currentId-1
         })
     }
     
@@ -57,14 +61,17 @@ class IssueListComponent extends React.Component{
         let issues=this.state.issues;
         let currentIssue=this.state.currentIssue;
         let currentId=this.state.currentId;
+        currentId=currentId+1;
+        let currenttoken="Tracker"+currentId;
         issues.push({
-            id:currentId+1,
+            id:currenttoken,
             name:currentIssue,
             completed:false
         });
         this.setState({
             issues:issues,
-            currentIssue:''
+            currentIssue:'',
+            currentId:currentId
         });
         console.log(issues);
     }
